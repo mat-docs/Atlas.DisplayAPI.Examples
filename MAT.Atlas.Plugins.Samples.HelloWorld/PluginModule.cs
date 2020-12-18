@@ -5,8 +5,7 @@ using System.ComponentModel.Composition;
 
 using Autofac;
 using Autofac.Core;
-
-using MAT.Atlas.Api.Presentation.Plugins;
+using MAT.Atlas.Client.Presentation.Plugins;
 
 namespace MAT.Atlas.Plugins.Samples.HelloWorld
 {
@@ -16,14 +15,13 @@ namespace MAT.Atlas.Plugins.Samples.HelloWorld
         //Add dependencies to the DI container
         protected override void Load(ContainerBuilder builder)
         {
-            // register the plugin
-            builder.RegisterType<Plugin>().As<IAtlasDisplayPlugin>();
+            DisplayPlugin<Plugin>.Register(builder);
 
-            // register the display view and view model
-            builder.RegisterType<HelloWorldView>();
-            builder.RegisterType<HelloWorldViewModel>();
-
-            //Register custom dependencies
+            this.RegisterMyServices(builder);
+        }
+        private void RegisterMyServices(ContainerBuilder builder)
+        {
+            //register custom dependencies
             //e.g. builder.RegisterType<MyClass>().As<IMyInterface>();
         }
     }

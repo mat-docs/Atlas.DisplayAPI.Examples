@@ -3,10 +3,8 @@
 
 using Autofac;
 using Autofac.Core;
-using MAT.Atlas.Api.Presentation.Plugins;
 using System.ComponentModel.Composition;
-using MAT.Atlas.Plugins.Samples.HelloConsole.ViewModels;
-using MAT.Atlas.Plugins.Samples.HelloConsole.Views;
+using MAT.Atlas.Client.Presentation.Plugins;
 
 namespace MAT.Atlas.Plugins.Samples.HelloConsole
 {
@@ -16,12 +14,7 @@ namespace MAT.Atlas.Plugins.Samples.HelloConsole
         //Add dependencies to the DI container
         protected override void Load(ContainerBuilder builder)
         {
-            // register the plugin
-            builder.RegisterType<Plugin>().As<IAtlasDisplayPlugin>();
-
-            // register the display view and view model
-            builder.RegisterType<HelloConsoleDisplayView>();
-            builder.RegisterType<HelloConsoleDisplayViewModel>();
+            DisplayPlugin<Plugin>.Register(builder);
 
             this.RegisterMyServices(builder);
         }

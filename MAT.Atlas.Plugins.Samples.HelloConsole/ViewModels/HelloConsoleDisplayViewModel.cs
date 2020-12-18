@@ -8,18 +8,16 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
-using System.Reactive.Concurrency;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-using MAT.Atlas.Api;
-using MAT.Atlas.Api.Presentation;
-using MAT.Atlas.Api.Presentation.Commands;
-using MAT.Atlas.Api.Signals;
+using MAT.Atlas.Api.Core.Signals;
 using MAT.Atlas.Client.Platform.Data;
 using MAT.Atlas.Client.Platform.Data.Signals;
 using MAT.Atlas.Client.Platform.Parameters;
 using MAT.Atlas.Client.Platform.Sessions;
+using MAT.Atlas.Client.Presentation.Commands;
 using MAT.Atlas.Client.Presentation.Displays;
 using MAT.Atlas.Client.Presentation.Plugins;
 using MAT.Atlas.Client.Presentation.Services;
@@ -33,7 +31,6 @@ namespace MAT.Atlas.Plugins.Samples.HelloConsole.ViewModels
     {
         private readonly IDataRequestSignalFactory dataRequestSignalFactory;
         private readonly IDisposable dataRequestSubscription;
-        private readonly IDispatcherSchedulerProvider dispatcherSchedulerProvider;
         private readonly IDisposable sampleCompositeRequestSubscription;
         private readonly IDisposable sampleRequestSubscription;
         private readonly ISessionSummaryService sessionSummaryService;
@@ -45,19 +42,18 @@ namespace MAT.Atlas.Plugins.Samples.HelloConsole.ViewModels
 
         private bool isCompositeDataRequest;
         private bool isScrollingPaused;
+        private readonly SynchronizationContext synchronizationContext;
 
         private ObservableCollection<string> textLines;
 
         public HelloConsoleDisplayViewModel(
             ISignalBus signalBus,
-            IDispatcherSchedulerProvider dispatcherSchedulerProvider,
             IDataRequestSignalFactory dataRequestSignalFactory,
             ISessionSummaryService sessionSummaryService)
         {
             this.dataRequestSignalFactory = dataRequestSignalFactory;
             this.sessionSummaryService = sessionSummaryService;
             this.signalBus = signalBus;
-            this.dispatcherSchedulerProvider = dispatcherSchedulerProvider;
 
             this.sampleRequestSubscription =
                 this.signalBus.Subscribe<SampleResultSignal>(this.HandleSampleResultSignal, r => r.SourceId == this.ScopeIdentity.Guid);
@@ -65,6 +61,8 @@ namespace MAT.Atlas.Plugins.Samples.HelloConsole.ViewModels
                 this.signalBus.Subscribe<CompositeSampleResultSignal>(this.HandleCompositeSampleResultSignal, r => r.SourceId == this.ScopeIdentity.Guid);
 
             this.dataRequestSubscription = this.signalBus.Subscribe<DataResultSignal>(this.HandleDataResultSignal, r => r.SourceId == this.ScopeIdentity.Guid);
+
+            this.synchronizationContext = SynchronizationContext.Current;
 
             this.TextLines = new ObservableCollection<string>();
             this.ClearCommand = new DelegateCommand(this.ExecuteClearCommand);
@@ -231,7 +229,7 @@ namespace MAT.Atlas.Plugins.Samples.HelloConsole.ViewModels
 
         private void ExecuteClearCommand()
         {
-            this.dispatcherSchedulerProvider.BackgroundDispatcher.Schedule(() => this.TextLines.Clear());
+            this.synchronizationContext.Post(_ => this.TextLines.Clear(), null);
         }
 
         private IList<string> FormatText(ParameterValuesBase result)
@@ -336,8 +334,8 @@ namespace MAT.Atlas.Plugins.Samples.HelloConsole.ViewModels
                 return;
             }
 
-            this.dispatcherSchedulerProvider.BackgroundDispatcher.Schedule(
-                () =>
+            this.synchronizationContext.Post(
+                _ =>
                 {
                     if (!append)
                     {
@@ -348,7 +346,8 @@ namespace MAT.Atlas.Plugins.Samples.HelloConsole.ViewModels
                     {
                         this.TextLines.Add(line);
                     }
-                });
+                },
+                null);
         }
 
         #region Display Properties

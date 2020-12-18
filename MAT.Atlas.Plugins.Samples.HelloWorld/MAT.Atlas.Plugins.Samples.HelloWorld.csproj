@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MAT.Atlas.Plugins.Samples.HelloWorld</RootNamespace>
     <AssemblyName>MAT.Atlas.Plugins.Samples.HelloWorld</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,23 +38,30 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Api.dll</HintPath>
     </Reference>
+    <Reference Include="MAT.Atlas.Api.Core, Version=10.4.1.71, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Atlas.DisplayAPI.10.4.1.71\lib\net48\MAT.Atlas.Api.Core.dll</HintPath>
+    </Reference>
     <Reference Include="MAT.Atlas.Api.Presentation, Version=10.3.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Api.Presentation.dll</HintPath>
     </Reference>
-    <Reference Include="MAT.Atlas.Client.Platform, Version=10.3.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Client.Platform.dll</HintPath>
+    <Reference Include="MAT.Atlas.Client.Platform, Version=10.4.1.71, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Atlas.DisplayAPI.10.4.1.71\lib\net48\MAT.Atlas.Client.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="MAT.Atlas.Client.Presentation, Version=10.3.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Client.Presentation.dll</HintPath>
+    <Reference Include="MAT.Atlas.Client.Presentation, Version=10.4.1.71, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Atlas.DisplayAPI.10.4.1.71\lib\net48\MAT.Atlas.Client.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="MAT.OCS.Core, Version=2.1.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MAT.OCS.Core.2.1.11\lib\net45\MAT.OCS.Core.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
