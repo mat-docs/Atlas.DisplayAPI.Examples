@@ -35,7 +35,9 @@ jobs:
           $Method = "GET"
           $packageVersions = Invoke-RestMethod -Uri $Uri -Headers $Headers -Method $Method
           $sortedPackages = $packageVersions.name | Where { $_ -match "^[-]?[0-9.]+$" } | %{[System.Version]$_} | sort -Descending
+          echo "Package versions found:" $sortedPackages | foreach-object { $_.ToString() }
           $latestVersion = $sortedPackages[0].ToString()
+          echo "Latest Version: $latestVersion"
           . ./.github/workflows/Check-References.ps1
           Check-References -Rootdirectory $Env:GITHUB_WORKSPACE -PackageName "Atlas.DisplayAPI" -VersionMustContain $latestVersion
 
