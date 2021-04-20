@@ -1,0 +1,53 @@
+name: PR gated build
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron:  '0 12 * * *'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    runs-on: windows-latest
+    env:
+      Solution_Name: MAT.OCS.Atlas10.ClientAPI
+      PackagesUserName: ${{ secrets.PACKAGES_USERNAME }}
+      PackagesPatToken: ${{ secrets.PACKAGES_PATTOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup NuGet.exe
+        uses: NuGet/setup-nuget@v1.0.5
+
+      - name: Check latest available package
+        shell: pwsh
+        run: |
+          nuget sources Add -Name "McLaren Applied GitHub Packages" -Source https://nuget.pkg.github.com/mat-docs/index.json -UserName $env:PackagesUserName -Password $env:PackagesPatToken
+          $Uri = "https://api.github.com/orgs/mat-docs/packages/nuget/Atlas.DisplayAPI/versions"
+          $Headers = @{Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$env:PackagesUserName:$env:PackagesPatToken")) }
+          $Method = "GET"
+          $packageVersions = Invoke-RestMethod -Uri $Uri -Headers $Headers -Method $Method
+          $sortedPackages = $packageVersions | Sort-Object name -Descending
+          $latestVersion = $sortedPackages[0].name
+          . ./.github/workflows/Check-References.ps1
+          Check-References -Rootdirectory $Env:GITHUB_WORKSPACE -PackageName "Atlas.DisplayAPI" -VersionMustContain $latestVersion
+
+      - name: Restore nuget feeds
+        shell: pwsh
+        run: |
+          nuget sources Add -Name "McLaren Applied GitHub Packages" -Source https://nuget.pkg.github.com/mat-docs/index.json -UserName $env:PackagesUserName -Password $env:PackagesPatToken
+          nuget restore $env:Solution_Name
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Build solution
+        shell: pwsh    
+        run: msbuild $env:Solution_Name -p:Configuration=${{ matrix.configuration }} -p:Platform="Any CPU"
