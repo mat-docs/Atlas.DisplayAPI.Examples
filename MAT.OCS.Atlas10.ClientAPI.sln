@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAT.Atlas.Plugins.Samples.H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAT.Atlas.Plugins.Samples.HelloConsole", "MAT.Atlas.Plugins.Samples.HelloConsole\MAT.Atlas.Plugins.Samples.HelloConsole.csproj", "{D1B7382E-D7E3-43C1-A99A-C48407145FFC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Actions", "Actions", "{66E0E623-D52E-4C83-9A9D-019384DF94D9}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\Check-References.ps1 = .github\workflows\Check-References.ps1
+		.github\workflows\Get-Package-Version.ps1 = .github\workflows\Get-Package-Version.ps1
+		.github\workflows\pr.yml = .github\workflows\pr.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
