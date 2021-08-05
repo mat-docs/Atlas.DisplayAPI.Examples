@@ -30,6 +30,7 @@ namespace DriverDisplayPlugin
         private static readonly Color RedOn = Color.FromArgb(255, 255, 0, 0);
         private static readonly Color YellowOff = Color.FromArgb(255, 40, 40, 0);
         private static readonly Color YellowOn = Color.FromArgb(255, 255, 255, 0);
+        private readonly Pen cursorPen = new Pen(Brushes.White, 1);
         private readonly OperationTracker<(DataRequestSignal Signal, IDisplayParameterContainer ParameterContainer)> dataRequestTracker;
         private readonly OperationTracker<SampleRequestSignal> sampleRequestTracker;
         private readonly OperationTracker<Trace> redrawTraceRequestTracker;
@@ -253,11 +254,10 @@ namespace DriverDisplayPlugin
                     return;
                 }
 
-                var cursorPen = new Pen(Brushes.White, 1);
                 this.CursorVisual.Draw(
                     dc =>
                     {
-                        dc.DrawLine(cursorPen, cursorLine.Item1, cursorLine.Item2);
+                        dc.DrawLine(this.cursorPen, cursorLine.Item1, cursorLine.Item2);
                     });
             }
             finally
