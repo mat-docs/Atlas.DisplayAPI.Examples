@@ -20,7 +20,10 @@
         <Button Command="{Binding ClearLogCommand}">Clear Log</Button>
         <Button Margin="5,0,0,0" Command="{Binding LogPropertiesCommand}">Log Properties</Button>
         <Button Margin="5,0,0,0" Command="{Binding CentreCursorCommand}">Centre Cursor</Button>
-        <CheckBox Margin="5,0,0,0" VerticalAlignment="Center" IsChecked="{Binding LogPropertiesPeriodically, Mode=TwoWay}">Log every 5s</CheckBox>
+        <CheckBox Margin="5,0,0,0" VerticalAlignment="Center"
+                  IsChecked="{Binding LogPropertiesPeriodically, Mode=TwoWay}">
+          Log every 5s
+        </CheckBox>
         <TextBlock Margin="5,0,0,0"
                    Foreground="{Binding TextBrush}"
                    FontSize="{Binding FontSize}"

@@ -253,10 +253,10 @@ namespace DriverDisplayPlugin
                     return;
                 }
 
+                var cursorPen = new Pen(Brushes.White, 1);
                 this.CursorVisual.Draw(
                     dc =>
                     {
-                        var cursorPen = new Pen(Brushes.White, 1);
                         dc.DrawLine(cursorPen, cursorLine.Item1, cursorLine.Item2);
                     });
             }

@@ -10,7 +10,7 @@
   <ItemsControl ItemsSource="{Binding ParameterValues}" SnapsToDevicePixels="True" UseLayoutRounding="True">
     <ItemsControl.ItemsPanel>
       <ItemsPanelTemplate>
-        <UniformGrid Rows="{Binding RowCount}" Columns="{Binding ColumnCount}"/>
+        <UniformGrid Rows="{Binding RowCount}" Columns="{Binding ColumnCount}" />
       </ItemsPanelTemplate>
     </ItemsControl.ItemsPanel>
     <ItemsControl.ItemTemplate>

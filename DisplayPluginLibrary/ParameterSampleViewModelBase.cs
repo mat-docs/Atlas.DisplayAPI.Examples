@@ -43,7 +43,7 @@ namespace DisplayPluginLibrary
                 }
                 else
                 {
-                    var oldValue = value;
+                    var oldValue = this.value;
                     if (this.SetProperty(ref this.value, value))
                     {
                         this.OnValueChanged(oldValue);

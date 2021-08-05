@@ -40,7 +40,7 @@ namespace DisplayPluginLibrary
 
         protected override Task OnMakeCursorDataRequestsAsync(ICompositeSession compositeSession)
         {
-            return this.ExecuteOnUiAsync(() => this.SynchParameters(compositeSession.Key, compositeSession.CursorPoint));
+            return this.ExecuteOnUiAsync(() => this.SyncParameters(compositeSession.Key, compositeSession.CursorPoint));
         }
 
         private async void HandleCursorDataRequests(SampleResultSignal signal)
@@ -70,16 +70,16 @@ namespace DisplayPluginLibrary
             });
         }
 
-        private void SynchParameters(CompositeSessionKey compositeSessionKey, long cursorPoint)
+        private void SyncParameters(CompositeSessionKey compositeSessionKey, long cursorPoint)
         {
-            var exitingParameters = this.Parameters.ToDictionary(p => p.DisplayParameter, p => p);
+            var existingParameters = this.Parameters.ToDictionary(p => p.DisplayParameter, p => p);
 
             var i = 0;
             foreach (var primaryDisplayParameter in this.DisplayParameterService.PrimaryParameters.Take(this.Parameters.Count))
             {
                 if (!ReferenceEquals(this.Parameters[i].DisplayParameter, primaryDisplayParameter))
                 {
-                    if (exitingParameters.TryGetValue(primaryDisplayParameter, out var existingParameter))
+                    if (existingParameters.TryGetValue(primaryDisplayParameter, out var existingParameter))
                     {
                         this.Parameters[i] = existingParameter;
                     }

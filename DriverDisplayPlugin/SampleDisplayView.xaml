@@ -18,13 +18,13 @@
     <Viewbox>
       <Grid Height="1000">
         <Grid.RowDefinitions>
-          <RowDefinition Height="100"/>
-          <RowDefinition Height="*"/>
+          <RowDefinition Height="100" />
+          <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="100"/>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="100"/>
+          <ColumnDefinition Width="100" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="100" />
         </Grid.ColumnDefinitions>
 
         <ItemsControl Grid.Row="0"
@@ -32,16 +32,17 @@
                       ItemsSource="{Binding TopShiftLights}">
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <UniformGrid Rows="1" Columns="15"/>
+              <UniformGrid Rows="1" Columns="15" />
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate>
               <Viewbox Stretch="Uniform" Margin="10">
                 <Viewbox.RenderTransform>
-                  <TranslateTransform X="0" Y="{Binding ShiftY}"></TranslateTransform>
+                  <TranslateTransform X="0" Y="{Binding ShiftY}" />
                 </Viewbox.RenderTransform>
-                <Ellipse Width="100" Height="100" Fill="{Binding Color, Converter={StaticResource ColorToSolidColorBrushValueConverter}}"/>
+                <Ellipse Width="100" Height="100"
+                         Fill="{Binding Color, Converter={StaticResource ColorToSolidColorBrushValueConverter}}" />
               </Viewbox>
             </DataTemplate>
           </ItemsControl.ItemTemplate>
@@ -52,13 +53,14 @@
                       ItemsSource="{Binding LeftShiftLights}">
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <StackPanel Orientation="Vertical"/>
+              <StackPanel Orientation="Vertical" />
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate>
               <Viewbox Stretch="Uniform" Margin="10">
-                <Ellipse Width="100" Height="100" Fill="{Binding Color, Converter={StaticResource ColorToSolidColorBrushValueConverter}}"/>
+                <Ellipse Width="100" Height="100"
+                         Fill="{Binding Color, Converter={StaticResource ColorToSolidColorBrushValueConverter}}" />
               </Viewbox>
             </DataTemplate>
           </ItemsControl.ItemTemplate>
@@ -69,13 +71,14 @@
                       ItemsSource="{Binding RightShiftLights}">
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <StackPanel Orientation="Vertical"/>
+              <StackPanel Orientation="Vertical" />
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate>
               <Viewbox Stretch="Uniform" Margin="10">
-                <Ellipse Width="100" Height="100" Fill="{Binding Color, Converter={StaticResource ColorToSolidColorBrushValueConverter}}"/>
+                <Ellipse Width="100" Height="100"
+                         Fill="{Binding Color, Converter={StaticResource ColorToSolidColorBrushValueConverter}}" />
               </Viewbox>
             </DataTemplate>
           </ItemsControl.ItemTemplate>

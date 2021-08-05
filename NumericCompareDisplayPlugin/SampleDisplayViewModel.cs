@@ -173,9 +173,9 @@ namespace NumericCompareDisplayPlugin
             this.MakeDataRequests(true, false);
         }
 
-        private int GetCellIndex(int oldParameterIndex, int oldCompositeSessionIndex)
+        private int GetCellIndex(int parameterIndex, int compositeSessionIndex)
         {
-            var parameterValueIndex = oldParameterIndex * (this.compositeSessionKeys.Count + 1) + 1 + oldCompositeSessionIndex;
+            var parameterValueIndex = parameterIndex * (this.compositeSessionKeys.Count + 1) + 1 + compositeSessionIndex;
             return parameterValueIndex;
         }
     }
