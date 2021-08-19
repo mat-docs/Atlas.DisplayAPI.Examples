@@ -2,7 +2,7 @@
 
 namespace SampleDisplayPlugin
 {
-    public class SampleDisplayViewModel : DisplayPluginViewModel
+    public sealed class SampleDisplayViewModel : DisplayPluginViewModel
     {
     }
 }

@@ -18,22 +18,25 @@ using MAT.OCS.Core;
 namespace NumericCompareDisplayPlugin
 {
     [DisplayPluginSettings(ParametersMaxCount = 100)]
-    public class SampleDisplayViewModel : TemplateDisplayViewModelBase
+    public sealed class SampleDisplayViewModel : TemplateDisplayViewModelBase
     {
         private readonly object parameterLock = new object();
+        private int columnCount;
         private List<CompositeSessionKey> compositeSessionKeys = new List<CompositeSessionKey>();
         private List<Guid> parameterIdentifiers = new List<Guid>();
         private int rowCount;
-        private int columnCount;
 
         public SampleDisplayViewModel(
             ISignalBus signalBus,
             IDataRequestSignalFactory dataRequestSignalFactory,
-                ILogger logger) :
+            ILogger logger) :
             base(signalBus, dataRequestSignalFactory, logger)
         {
             this.Disposables.Add(this.SignalBus.Subscribe<CompositeSampleResultSignal>(this.HandleCompositeSampleResultSignal, r => r.SourceId == this.ScopeIdentity.Guid));
         }
+
+        [Browsable(false)]
+        public ObservableCollection<CellViewModel> CellValues { get; } = new ObservableCollection<CellViewModel>();
 
         [Browsable(false)]
         public int ColumnCount
@@ -48,9 +51,6 @@ namespace NumericCompareDisplayPlugin
             get => this.rowCount;
             set => SetProperty(ref this.rowCount, value);
         }
-
-        [Browsable(false)]
-        public ObservableCollection<CellViewModel> ParameterValues { get; } = new ObservableCollection<CellViewModel>();
 
         protected override async Task OnMakeCursorDataRequestsAsync(ICompositeSession compositeSession)
         {
@@ -103,8 +103,8 @@ namespace NumericCompareDisplayPlugin
 
                     try
                     {
-                        var parameterValueIndex = this.GetCellIndex(parameterIndex, compositeSessionIndex);
-                        this.ParameterValues[parameterValueIndex].Value = parameterValues.Data[0];
+                        var cellIndex = this.GetCellIndex(parameterIndex, compositeSessionIndex);
+                        this.CellValues[cellIndex].Value = parameterValues.Data[0];
                     }
                     finally
                     {
@@ -128,19 +128,19 @@ namespace NumericCompareDisplayPlugin
 
                     this.RowCount = 0;
                     this.ColumnCount = 0;
-                    this.ParameterValues.Clear();
+                    this.CellValues.Clear();
                     return;
                 }
 
                 var newCompositeSessionKeys = compositeSessions.Select(cs => cs.Key).ToList();
                 var newParameterIdentifiers = new List<Guid>();
-                var newParameterValues = new List<CellViewModel>();
+                var newCellValues = new List<CellViewModel>();
 
                 foreach (var parameterContainer in parameterContainers)
                 {
                     newParameterIdentifiers.Add(parameterContainer.InstanceIdentifier);
 
-                    newParameterValues.Add(new CellViewModel(parameterContainer.Name));
+                    newCellValues.Add(new CellViewModel(parameterContainer.Name));
 
                     var oldParameterIndex = this.parameterIdentifiers.IndexOf(parameterContainer.InstanceIdentifier);
                     foreach (var newCompositeSessionKey in newCompositeSessionKeys)
@@ -148,13 +148,13 @@ namespace NumericCompareDisplayPlugin
                         var oldCompositeSessionIndex = this.compositeSessionKeys.IndexOf(newCompositeSessionKey);
                         if (oldParameterIndex < 0 || oldCompositeSessionIndex < 0)
                         {
-                            newParameterValues.Add(new CellViewModel(string.Empty));
+                            newCellValues.Add(new CellViewModel(string.Empty));
                             continue;
                         }
 
-                        var parameterValueIndex = GetCellIndex(oldParameterIndex, oldCompositeSessionIndex);
-                        var oldParameterValue = this.ParameterValues[parameterValueIndex];
-                        newParameterValues.Add(oldParameterValue);
+                        var cellIndex = GetCellIndex(oldParameterIndex, oldCompositeSessionIndex);
+                        var oldParameterValue = this.CellValues[cellIndex];
+                        newCellValues.Add(oldParameterValue);
                     }
                 }
 
@@ -163,10 +163,10 @@ namespace NumericCompareDisplayPlugin
 
                 this.RowCount = this.parameterIdentifiers.Count;
                 this.ColumnCount = this.compositeSessionKeys.Count + 1;
-                this.ParameterValues.Clear();
-                foreach (var newCell in newParameterValues)
+                this.CellValues.Clear();
+                foreach (var newCellValue in newCellValues)
                 {
-                    this.ParameterValues.Add(newCell);
+                    this.CellValues.Add(newCellValue);
                 }
             }
 

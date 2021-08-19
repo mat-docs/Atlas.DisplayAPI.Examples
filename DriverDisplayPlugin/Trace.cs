@@ -11,7 +11,10 @@ using MathNet.Numerics;
 
 namespace DriverDisplayPlugin
 {
-    public class Trace
+    /// <summary>
+    ///     Converts the result of a data request into a collection of lines.
+    /// </summary>
+    public sealed class Trace
     {
         private readonly double displayMin;
         private readonly double displayRange;

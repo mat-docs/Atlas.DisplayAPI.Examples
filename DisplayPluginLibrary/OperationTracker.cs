@@ -3,6 +3,10 @@ using System.Timers;
 
 namespace DisplayPluginLibrary
 {
+    /// <summary>
+    ///     Provides support for flow control and throttling of operations such as data or redraw requests.
+    /// </summary>
+    /// <typeparam name="TOperation">Operation data.</typeparam>
     public sealed class OperationTracker<TOperation>
     {
         private readonly TimeSpan interval;
@@ -14,6 +18,11 @@ namespace DisplayPluginLibrary
         private readonly Timer timer = new Timer(50);
         private DateTime lastTimeExecutedUtc = DateTime.UtcNow;
 
+        /// <summary>
+        ///     Constructor.
+        /// </summary>
+        /// <param name="interval">Specifies the minimum time between operations being executed.</param>
+        /// <param name="action">Action to execute on operation data.</param>
         public OperationTracker(TimeSpan interval, Action<TOperation> action)
         {
             this.interval = interval;
@@ -22,6 +31,9 @@ namespace DisplayPluginLibrary
             this.timer.Elapsed += this.OnTimer;
         }
 
+        /// <summary>
+        ///     Clear any active/pending operations.
+        /// </summary>
         public void Abort()
         {
             lock (this.padLock)
@@ -31,6 +43,10 @@ namespace DisplayPluginLibrary
             }
         }
 
+        /// <summary>
+        ///     Add operation data (current/pending or replaces pending)
+        /// </summary>
+        /// <param name="operation">Operation data.</param>
         public void Add(TOperation operation)
         {
             lock (this.padLock)
@@ -50,6 +66,9 @@ namespace DisplayPluginLibrary
             this.TryExecute();
         }
 
+        /// <summary>
+        ///     Indicate that the current operation has finished executing.
+        /// </summary>
         public void Complete()
         {
             lock (this.padLock)
@@ -66,6 +85,11 @@ namespace DisplayPluginLibrary
             }
         }
 
+        /// <summary>
+        ///     Get current operation data.
+        /// </summary>
+        /// <param name="currentOperation">Current operation.</param>
+        /// <returns>True if there is a current operation.</returns>
         public bool GetCurrent(out TOperation currentOperation)
         {
             lock (this.padLock)

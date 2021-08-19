@@ -7,28 +7,43 @@ using MAT.Atlas.Client.Platform.Parameters;
 
 namespace DisplayPluginLibrary
 {
+    /// <summary>
+    ///     Base class for Parameter View Model.
+    /// </summary>
     public abstract class ParameterSampleViewModelBase : BindableBase
     {
         private bool isValidValue;
         private string name;
         private double value;
 
+        /// <summary>
+        ///     Display parameter properties (Note: only valid after OnUpdate has been called).
+        /// </summary>
         public IDisplayParameter DisplayParameter { get; private set; }
 
         internal OperationTracker<SampleRequestSignal> OperationTracker { get; private set; }
 
+        /// <summary>
+        ///     Has a value been assigned.
+        /// </summary>
         public bool IsValidValue
         {
             get => this.isValidValue;
             set => this.SetProperty(ref this.isValidValue, value);
         }
 
+        /// <summary>
+        ///     Display parameter name.
+        /// </summary>
         public string Name
         {
             get => this.name;
             set => this.SetProperty(ref this.name, value);
         }
 
+        /// <summary>
+        ///     Current value.
+        /// </summary>
         public double Value
         {
             get => this.value;
@@ -52,7 +67,18 @@ namespace DisplayPluginLibrary
             }
         }
 
+        /// <summary>
+        ///     Notification method called when new parameter value has been assigned.
+        /// </summary>
+        /// <param name="oldValue">Optional previous value.</param>
         protected virtual void OnValueChanged(double? oldValue)
+        {
+        }
+
+        /// <summary>
+        ///     Notification method called after parameter have been updated.
+        /// </summary>
+        protected virtual void OnUpdate()
         {
         }
 
@@ -76,6 +102,7 @@ namespace DisplayPluginLibrary
 
             this.DisplayParameter = displayParameter;
             this.Name = displayParameter?.Name;
+            this.OnUpdate();
         }
     }
 }

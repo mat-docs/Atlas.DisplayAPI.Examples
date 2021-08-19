@@ -2,7 +2,7 @@
 
 namespace NumericCompareDisplayPlugin
 {
-    public class CellViewModel : BindableBase
+    public sealed class CellViewModel : BindableBase
     {
         private object obj;
 

@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:numericCompareDisplayPlugin="clr-namespace:NumericCompareDisplayPlugin"
+             xmlns:local="clr-namespace:NumericCompareDisplayPlugin"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance numericCompareDisplayPlugin:SampleDisplayViewModel, d:IsDesignTimeCreatable=False}"
+             d:DataContext="{d:DesignInstance local:SampleDisplayViewModel, d:IsDesignTimeCreatable=False}"
              d:DesignHeight="450" d:DesignWidth="800">
-  <ItemsControl ItemsSource="{Binding ParameterValues}" SnapsToDevicePixels="True" UseLayoutRounding="True">
+  <ItemsControl ItemsSource="{Binding CellValues}" SnapsToDevicePixels="True" UseLayoutRounding="True">
     <ItemsControl.ItemsPanel>
       <ItemsPanelTemplate>
         <UniformGrid Rows="{Binding RowCount}" Columns="{Binding ColumnCount}" />
