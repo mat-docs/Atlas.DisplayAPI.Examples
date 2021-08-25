@@ -32,9 +32,16 @@ namespace SimpleGaugePlugin
             this.DisplayMaximum = this.DisplayParameter.SessionParameter.Maximum;
         }
 
-        protected override void OnValueChanged(double? oldValue)
+        protected override bool OnValueChanged(double? oldValue, double newValue)
         {
+            this.OnUpdate();
+            if (newValue < this.DisplayMinimum || newValue > this.DisplayMaximum)
+            {
+                return false;
+            }
+
             this.Description = $"{this.Name}\r{this.Value}";
+            return true;
         }
     }
 }

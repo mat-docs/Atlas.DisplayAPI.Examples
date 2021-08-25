@@ -55,9 +55,16 @@ namespace DisplayPluginLibrary
         protected abstract TParameterViewModel OnCreateParameterViewModel();
 
         /// <inheritdoc />
-        protected sealed override Task OnMakeCursorDataRequestsAsync(ICompositeSession compositeSession)
+        protected sealed override async Task OnMakeCursorDataRequestsAsync(ICompositeSession compositeSession)
         {
-            return this.ExecuteOnUiAsync(() => this.UpdateParameters(compositeSession.Key, compositeSession.CursorPoint));
+            try
+            {
+                await this.ExecuteOnUiAsync(() => this.UpdateParameters(compositeSession.Key, compositeSession.CursorPoint));
+            }
+            catch (Exception ex)
+            {
+                this.Logger.Trace("Error updating parameters", ex);
+            }
         }
 
         /// <summary>
@@ -69,29 +76,14 @@ namespace DisplayPluginLibrary
 
         private async void HandleCursorDataRequests(SampleResultSignal signal)
         {
-            await this.ExecuteOnUiAsync(() =>
+            try
             {
-                ParameterSampleViewModelBase parameterSampleViewModel = null;
-                try
-                {
-                    parameterSampleViewModel = this.Parameters.FirstOrDefault(p => p.DisplayParameter.InstanceIdentifier == signal.Data.Request.RequestId);
-                    if (parameterSampleViewModel == null)
-                    {
-                        return;
-                    }
-
-                    if (signal.Data.ParameterValues.SampleCount != 1)
-                    {
-                        return;
-                    }
-
-                    parameterSampleViewModel.Value = signal.Data.ParameterValues.Data[0];
-                }
-                finally
-                {
-                    parameterSampleViewModel?.OperationTracker.Complete();
-                }
-            });
+                await this.ExecuteOnUiAsync(() => { UpdateParameterValue(signal.Data); });
+            }
+            catch (Exception ex)
+            {
+                this.Logger.Trace("Error updating parameter value", ex);
+            }
         }
 
         private void UpdateParameters(CompositeSessionKey compositeSessionKey, long cursorPoint)
@@ -146,6 +138,37 @@ namespace DisplayPluginLibrary
             }
 
             this.OnUpdateParameters();
+        }
+
+        private void UpdateParameterValue(IResult data)
+        {
+            ParameterSampleViewModelBase parameterSampleViewModel = null;
+            try
+            {
+                parameterSampleViewModel = this.Parameters.FirstOrDefault(p => p.DisplayParameter.InstanceIdentifier == data.Request.RequestId);
+                if (parameterSampleViewModel == null)
+                {
+                    return;
+                }
+
+                if (data.ParameterValues.SampleCount != 1 ||
+                    !data.ParameterValues.DataStatus[0].HasFlag(DataStatusType.Sample))
+                {
+                    return;
+                }
+
+                var value = data.ParameterValues.Data[0];
+                if (double.IsNaN(value))
+                {
+                    return;
+                }
+
+                parameterSampleViewModel.Value = value;
+            }
+            finally
+            {
+                parameterSampleViewModel?.OperationTracker.Complete();
+            }
         }
     }
 }

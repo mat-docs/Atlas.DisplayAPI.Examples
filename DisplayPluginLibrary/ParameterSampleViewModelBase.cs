@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using MAT.Atlas.Api.Core.Presentation;
 using MAT.Atlas.Api.Core.Signals;
@@ -49,20 +50,23 @@ namespace DisplayPluginLibrary
             get => this.value;
             set
             {
-                if (!isValidValue)
+                var oldValue = default(double?);
+
+                if (this.IsValidValue)
                 {
-                    this.isValidValue = true;
+                    if (EqualityComparer<double>.Default.Equals(this.value, value))
+                    {
+                        return;
+                    }
+
+                    oldValue = this.value;
+                }
+
+                this.IsValidValue = this.OnValueChanged(oldValue, value);
+                if (this.IsValidValue)
+                {
                     this.value = value;
                     this.OnPropertyChanged();
-                    this.OnValueChanged(null);
-                }
-                else
-                {
-                    var oldValue = this.value;
-                    if (this.SetProperty(ref this.value, value))
-                    {
-                        this.OnValueChanged(oldValue);
-                    }
                 }
             }
         }
@@ -71,8 +75,11 @@ namespace DisplayPluginLibrary
         ///     Notification method called when new parameter value has been assigned.
         /// </summary>
         /// <param name="oldValue">Optional previous value.</param>
-        protected virtual void OnValueChanged(double? oldValue)
+        /// <param name="newValue">New value.</param>
+        /// <returns>Whether value is valid.</returns>
+        protected virtual bool OnValueChanged(double? oldValue, double newValue)
         {
+            return true;
         }
 
         /// <summary>
@@ -101,8 +108,13 @@ namespace DisplayPluginLibrary
             }
 
             this.DisplayParameter = displayParameter;
-            this.Name = displayParameter?.Name;
-            this.OnUpdate();
+
+            this.Name = displayParameter?.Name ?? string.Empty;
+
+            if (this.DisplayParameter != null)
+            {
+                this.OnUpdate();
+            }
         }
     }
 }
