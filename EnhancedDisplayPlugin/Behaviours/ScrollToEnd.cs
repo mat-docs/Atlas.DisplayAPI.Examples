@@ -3,7 +3,7 @@ using Microsoft.Xaml.Behaviors;
 
 namespace EnhancedDisplayPlugin.Behaviours
 {
-    public class ScrollToEnd : Behavior<TextBox>
+    public sealed class ScrollToEnd : Behavior<TextBox>
     {
         protected override void OnAttached()
         {

@@ -20,7 +20,7 @@ using MAT.Atlas.Client.Presentation.Plugins;
 namespace DriverDisplayPlugin
 {
     [DisplayPluginSettings(ParametersMaxCount = 100)]
-    public class SampleDisplayViewModel : TemplateDisplayViewModelBase
+    public sealed class SampleDisplayViewModel : TemplateDisplayViewModelBase
     {
         private static readonly Color BlueOff = Color.FromArgb(255, 0, 0, 40);
         private static readonly Color BlueOn = Color.FromArgb(255, 0, 0, 255);
@@ -140,7 +140,7 @@ namespace DriverDisplayPlugin
             return Task.CompletedTask;
         }
 
-        protected override Task OnMakeTimelineDataRequestsAsync(ICompositeSession compositeSession)
+        protected override Task OnMakeTimebaseDataRequestsAsync(ICompositeSession compositeSession)
         {
             if (this.DisplayParameterService.PrimaryParameters.Count < 2)
             {

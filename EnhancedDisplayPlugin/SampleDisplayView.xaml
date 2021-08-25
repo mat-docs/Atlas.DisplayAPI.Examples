@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:behaviours="clr-namespace:EnhancedDisplayPlugin.Behaviours"
-             xmlns:enhancedDisplayPlugin="clr-namespace:EnhancedDisplayPlugin"
+             xmlns:local="clr-namespace:EnhancedDisplayPlugin"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance enhancedDisplayPlugin:SampleDisplayViewModel, d:IsDesignTimeCreatable=False}"
+             d:DataContext="{d:DesignInstance local:SampleDisplayViewModel, d:IsDesignTimeCreatable=False}"
              d:DesignHeight="450" d:DesignWidth="800">
   <Grid>
     <Grid>

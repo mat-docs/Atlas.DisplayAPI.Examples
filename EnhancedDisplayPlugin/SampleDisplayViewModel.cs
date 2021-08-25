@@ -23,7 +23,7 @@ using MAT.OCS.Core;
 namespace EnhancedDisplayPlugin
 {
     [DisplayPluginSettings(ParametersMaxCount = 100)]
-    public class SampleDisplayViewModel : DisplayPluginViewModel
+    public sealed class SampleDisplayViewModel : DisplayPluginViewModel
     {
         private static readonly Guid ValueAtCursorRequest = Guid.NewGuid();
         private static readonly Guid SamplesForTimebaseRequest = Guid.NewGuid();
@@ -297,26 +297,26 @@ namespace EnhancedDisplayPlugin
             base.OnPropertyChanged(propertyChangedEventArgs);
         }
 
-        private void MakeDataRequests(bool cursorChanged, bool timelineChanged)
+        private void MakeDataRequests(bool cursorChanged, bool timebaseChanged)
         {
             // NB: this.ActiveCompositeSessionContainer may throw an exception if display is not initialised
             if (!this.CanRetrieveData)
             {
-                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timelineChanged})");
+                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timebaseChanged})");
                 this.Log($"    {nameof(this.CanRetrieveData)}=false");
                 return;
             }
 
             if (this.ActiveCompositeSessionContainer == null)
             {
-                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timelineChanged})");
+                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timebaseChanged})");
                 this.Log($"    {nameof(this.ActiveCompositeSessionContainer)}=null");
                 return;
             }
 
             if (!this.ActiveCompositeSessionContainer.IsPrimaryCompositeSessionAvailable)
             {
-                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timelineChanged})");
+                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timebaseChanged})");
                 this.Log($"    {nameof(this.ActiveCompositeSessionContainer.IsPrimaryCompositeSessionAvailable)}=false");
                 return;
             }
@@ -324,39 +324,39 @@ namespace EnhancedDisplayPlugin
             var primarySession =  this.ActiveCompositeSessionContainer.CompositeSessions.FirstOrDefault(c => c.IsPrimary);
             if (primarySession == null)
             {
-                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timelineChanged})");
+                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timebaseChanged})");
                 this.Log($"    {nameof(this.ActiveCompositeSessionContainer.CompositeSessions)} no primary session found");
                 return;
             }
 
-            this.MakeDataRequests(primarySession, cursorChanged, timelineChanged);
+            this.MakeDataRequests(primarySession, cursorChanged, timebaseChanged);
         }
 
-        private void MakeDataRequests(ICompositeSession compositeSession, bool cursorChanged, bool timelineChanged)
+        private void MakeDataRequests(ICompositeSession compositeSession, bool cursorChanged, bool timebaseChanged)
         {
             // NB: this.ActiveCompositeSessionContainer may throw an exception if display is not initialised
             if (!this.CanRetrieveData)
             {
-                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timelineChanged})");
+                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timebaseChanged})");
                 this.Log($"    {nameof(this.CanRetrieveData)}=false");
                 return;
             }
 
             if (!this.displayParameterService.ParameterContainers.Any())
             {
-                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timelineChanged})");
+                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timebaseChanged})");
                 this.Log($"    {nameof(this.displayParameterService.ParameterContainers)}=empty");
                 return;
             }
 
             if (!this.displayParameterService.PrimaryParameters.Any())
             {
-                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timelineChanged})");
+                this.Log($"!{nameof(MakeDataRequests)}({cursorChanged}, {timebaseChanged})");
                 this.Log($"    {nameof(this.displayParameterService.PrimaryParameters)}=empty");
                 return;
             }
 
-            this.Log($"{nameof(MakeDataRequests)}({cursorChanged}, {timelineChanged})");
+            this.Log($"{nameof(MakeDataRequests)}({cursorChanged}, {timebaseChanged})");
 
             if (cursorChanged)
             {
@@ -375,7 +375,7 @@ namespace EnhancedDisplayPlugin
                 }
             }
 
-            if (timelineChanged)
+            if (timebaseChanged)
             {
                 foreach (var primaryParameter in this.displayParameterService.PrimaryParameters)
                 {

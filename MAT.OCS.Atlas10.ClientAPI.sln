@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumericCompareDisplayPlugin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDisplayPlugin", "SampleDisplayPlugin\SampleDisplayPlugin.csproj", "{25EC5637-EA0E-438C-B0BD-6EC2F7B1CFB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGaugePlugin", "SimpleGaugePlugin\SimpleGaugePlugin.csproj", "{899080EB-4531-438A-97C0-DDC890DFA5B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{25EC5637-EA0E-438C-B0BD-6EC2F7B1CFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25EC5637-EA0E-438C-B0BD-6EC2F7B1CFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25EC5637-EA0E-438C-B0BD-6EC2F7B1CFB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{899080EB-4531-438A-97C0-DDC890DFA5B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{899080EB-4531-438A-97C0-DDC890DFA5B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{899080EB-4531-438A-97C0-DDC890DFA5B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{899080EB-4531-438A-97C0-DDC890DFA5B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{7F7D8F62-47B9-4A98-BA03-C479EDB70EDB} = {7D1224A3-A217-4AB4-A0F7-FE45AA4386C4}
 		{AF5DEE0A-1307-4B0C-A641-9E617B14E14A} = {7D1224A3-A217-4AB4-A0F7-FE45AA4386C4}
 		{25EC5637-EA0E-438C-B0BD-6EC2F7B1CFB6} = {7D1224A3-A217-4AB4-A0F7-FE45AA4386C4}
+		{899080EB-4531-438A-97C0-DDC890DFA5B1} = {7D1224A3-A217-4AB4-A0F7-FE45AA4386C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5F01EE0C-3E60-4D5E-A2C8-7462210A0BBC}

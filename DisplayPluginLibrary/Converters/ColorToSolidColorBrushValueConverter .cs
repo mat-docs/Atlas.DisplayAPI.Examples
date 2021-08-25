@@ -5,6 +5,9 @@ using System.Windows.Media;
 
 namespace DisplayPluginLibrary.Converters
 {
+    /// <summary>
+    ///     Media color to solid color brush converter.
+    /// </summary>
     public class ColorToSolidColorBrushValueConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

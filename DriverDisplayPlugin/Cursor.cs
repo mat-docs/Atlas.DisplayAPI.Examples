@@ -4,7 +4,10 @@ using MAT.Atlas.Api.Core.Data;
 
 namespace DriverDisplayPlugin
 {
-    public class Cursor
+    /// <summary>
+    ///     Converts the cursor timestamp into a vertical line.
+    /// </summary>
+    public sealed class Cursor
     {
         private readonly TimeRange timebase;
         private readonly long cursorValue;

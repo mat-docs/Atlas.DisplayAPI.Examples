@@ -6,7 +6,7 @@ using MAT.Atlas.Client.Presentation.Plugins;
 namespace DriverDisplayPlugin
 {
     [Export(typeof(IModule))]
-    public class PluginModule : Module
+    public sealed class PluginModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

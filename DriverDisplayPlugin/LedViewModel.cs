@@ -5,7 +5,7 @@ using MAT.Atlas.Api.Core.Presentation;
 
 namespace DriverDisplayPlugin
 {
-    public class LedViewModel : BindableBase
+    public sealed class LedViewModel : BindableBase
     {
         private readonly Color offColor;
         private readonly Color onColor;

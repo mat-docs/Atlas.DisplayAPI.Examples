@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel.Composition;
-
 using Autofac;
 using Autofac.Core;
-
 using MAT.Atlas.Client.Presentation.Plugins;
 
-namespace SampleDisplayPlugin
+namespace SimpleGaugePlugin
 {
     [Export(typeof(IModule))]
     public sealed class PluginModule : Module

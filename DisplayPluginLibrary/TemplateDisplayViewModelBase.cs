@@ -15,13 +15,23 @@ using MAT.Atlas.Client.Presentation.Services;
 
 namespace DisplayPluginLibrary
 {
+    /// <summary>
+    ///     Provides a template that helps create displays that track cursor and/or timebase changes properly.
+    /// </summary>
     public abstract class TemplateDisplayViewModelBase : DisplayPluginViewModel
     {
         private readonly OperationTracker<ICompositeSession> cursorDataRequestTracker;
         private readonly List<IDisposable> disposables = new List<IDisposable>();
-        private readonly OperationTracker<ICompositeSession> timelineDataRequestTracker;
+        private readonly OperationTracker<ICompositeSession> timebaseDataRequestTracker;
         private bool isDisplayVisible;
 
+        /// <summary>
+        ///     Constructor.
+        /// </summary>
+        /// <param name="signalBus">Signal bus service.</param>
+        /// <param name="dataRequestSignalFactory">Data request signal factory.</param>
+        /// <param name="logger">Logger service.</param>
+        /// <param name="throttleInterval">Interval to throttle data requests (default 5Hz).</param>
         protected TemplateDisplayViewModelBase(
             ISignalBus signalBus,
             IDataRequestSignalFactory dataRequestSignalFactory,
@@ -39,17 +49,29 @@ namespace DisplayPluginLibrary
                 this.ThrottleInterval,
                 this.MakeCursorDataRequests);
 
-            this.timelineDataRequestTracker = new OperationTracker<ICompositeSession>(
+            this.timebaseDataRequestTracker = new OperationTracker<ICompositeSession>(
                 this.ThrottleInterval,
-                this.MakeTimelineDataRequests);
+                this.MakeTimebaseDataRequests);
         }
 
+        /// <summary>
+        ///     Data request signal factory.
+        /// </summary>
         protected IDataRequestSignalFactory DataRequestSignalFactory { get; }
 
+        /// <summary>
+        ///     Items that are automatically disposed.
+        /// </summary>
         protected IList<IDisposable> Disposables => this.disposables;
 
+        /// <summary>
+        ///     Display parameter service (only available once OnInitialised has been called)
+        /// </summary>
         protected IDisplayParameterService DisplayParameterService { get; private set; }
 
+        /// <summary>
+        ///     Whether display is currently visible.
+        /// </summary>
         [Browsable(false)]
         public bool IsDisplayVisible
         {
@@ -57,19 +79,33 @@ namespace DisplayPluginLibrary
             set => this.SetProperty(ref this.isDisplayVisible, value);
         }
 
+        /// <summary>
+        ///     Logger service.
+        /// </summary>
         protected ILogger Logger { get; }
 
+        /// <summary>
+        ///     Signal bus service.
+        /// </summary>
         protected ISignalBus SignalBus { get; }
 
+        /// <summary>
+        ///     Synchronization context used to send/post work to UI thread.
+        /// </summary>
         protected SynchronizationContext SynchronizationContext { get; }
 
+        /// <summary>
+        ///     Interval to throttle data requests (default 5Hz).
+        /// </summary>
         protected TimeSpan ThrottleInterval { get; }
 
+        /// <inheritdoc />
         public override void OnCanRenderDisplayChanged(bool canRender)
         {
             this.MakeDataRequests(true, true);
         }
 
+        /// <inheritdoc />
         protected override void OnInitialised()
         {
             // Access to Display specific services
@@ -78,26 +114,31 @@ namespace DisplayPluginLibrary
             this.MakeDataRequests(true, true);
         }
 
+        /// <inheritdoc />
         public override void OnParameterAdded(ParameterEventArgs args)
         {
             this.MakeDataRequests(true, true);
         }
 
+        /// <inheritdoc />
         public override void OnParameterRemoved(ParameterEventArgs args)
         {
             this.MakeDataRequests(true, true);
         }
 
+        /// <inheritdoc />
         public override void OnCompositeSessionLoaded(CompositeSessionEventArgs args)
         {
             this.MakeDataRequests(true, true);
         }
 
+        /// <inheritdoc />
         public override void OnCompositeSessionUnLoaded(CompositeSessionUnloadedEventArgs args)
         {
             this.MakeDataRequests(true, true);
         }
 
+        /// <inheritdoc />
         public override void OnCompositeSessionContainerChanged()
         {
             if (this.ActiveCompositeSessionContainer == null)
@@ -108,16 +149,24 @@ namespace DisplayPluginLibrary
             this.MakeDataRequests(true, true);
         }
 
+        /// <inheritdoc />
         public override void OnCursorDataPointChanged(ICompositeSession compositeSession)
         {
             this.MakeDataRequests(compositeSession, true, false);
         }
 
+        /// <inheritdoc />
         public override void OnSessionTimeRangeChanged(ICompositeSession compositeSession)
         {
             this.MakeDataRequests(compositeSession, false, true);
         }
 
+        /// <summary>
+        ///     Helper method to execute an action on the UI thread.
+        /// </summary>
+        /// <param name="callback">Action to execute on the UI thread.</param>
+        /// <param name="token">Optional cancellation token.</param>
+        /// <returns>Task to await on.</returns>
         protected async Task ExecuteOnUiAsync(Action callback, CancellationToken? token = null)
         {
             if (token?.IsCancellationRequested ?? false)
@@ -165,7 +214,12 @@ namespace DisplayPluginLibrary
             }
         }
 
-        protected void MakeDataRequests(bool cursorChanged, bool timelineChanged)
+        /// <summary>
+        ///     Initiate data requests.
+        /// </summary>
+        /// <param name="cursorChanged">Initiate a cursor data request.</param>
+        /// <param name="timebaseChanged">Initiate a timebase data request.</param>
+        protected void MakeDataRequests(bool cursorChanged, bool timebaseChanged)
         {
             this.IsDisplayVisible = this.CanRetrieveData;
 
@@ -182,26 +236,37 @@ namespace DisplayPluginLibrary
                 return;
             }
 
-            this.MakeDataRequests(primarySession, cursorChanged, timelineChanged);
+            this.MakeDataRequests(primarySession, cursorChanged, timebaseChanged);
         }
 
+        /// <inheritdoc />
         protected override void OnDisposeManagedResources()
         {
             base.OnDisposeManagedResources();
             this.disposables.ForEach(d => d.Dispose());
         }
 
+        /// <summary>
+        ///     Notification method to initiate a data request in response to a cursor change.
+        /// </summary>
+        /// <param name="compositeSession">Composite session that changed.</param>
+        /// <returns>Task to await on.</returns>
         protected virtual Task OnMakeCursorDataRequestsAsync(ICompositeSession compositeSession)
         {
             return Task.CompletedTask;
         }
 
-        protected virtual Task OnMakeTimelineDataRequestsAsync(ICompositeSession compositeSession)
+        /// <summary>
+        ///     Notification method to initiate a data request in response to a timebase change.
+        /// </summary>
+        /// <param name="compositeSession">Composite session that changed.</param>
+        /// <returns>Task to await on.</returns>
+        protected virtual Task OnMakeTimebaseDataRequestsAsync(ICompositeSession compositeSession)
         {
             return Task.CompletedTask;
         }
 
-        private void MakeDataRequests(ICompositeSession compositeSession, bool cursorChanged, bool timelineChanged)
+        private void MakeDataRequests(ICompositeSession compositeSession, bool cursorChanged, bool timebaseChanged)
         {
             this.IsDisplayVisible = this.CanRetrieveData;
 
@@ -215,9 +280,9 @@ namespace DisplayPluginLibrary
                 this.cursorDataRequestTracker.Add(compositeSession);
             }
 
-            if (timelineChanged)
+            if (timebaseChanged)
             {
-                this.timelineDataRequestTracker.Add(compositeSession);
+                this.timebaseDataRequestTracker.Add(compositeSession);
             }
         }
 
@@ -237,19 +302,19 @@ namespace DisplayPluginLibrary
             }
         }
 
-        private async void MakeTimelineDataRequests(ICompositeSession compositeSession)
+        private async void MakeTimebaseDataRequests(ICompositeSession compositeSession)
         {
             try
             {
-                await this.OnMakeTimelineDataRequestsAsync(compositeSession);
+                await this.OnMakeTimebaseDataRequestsAsync(compositeSession);
             }
             catch (Exception ex)
             {
-                this.Logger.Debug(nameof(MakeTimelineDataRequests), ex);
+                this.Logger.Debug(nameof(MakeTimebaseDataRequests), ex);
             }
             finally
             {
-                this.timelineDataRequestTracker.Complete();
+                this.timebaseDataRequestTracker.Complete();
             }
         }
     }

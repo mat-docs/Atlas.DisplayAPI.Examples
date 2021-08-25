@@ -13,9 +13,14 @@ using MAT.OCS.Core;
 
 namespace DisplayPluginLibrary
 {
+    /// <summary>
+    ///     Provides automatic retrieval of display parameter sample values.
+    /// </summary>
+    /// <typeparam name="TParameterViewModel">Parameter View Model.</typeparam>
     public abstract class ParameterSampleDisplayViewModelBase<TParameterViewModel> : TemplateDisplayViewModelBase
         where TParameterViewModel : ParameterSampleViewModelBase
     {
+        /// <inheritdoc />
         protected ParameterSampleDisplayViewModelBase(
             ISignalBus signalBus,
             IDataRequestSignalFactory dataRequestSignalFactory,
@@ -26,9 +31,16 @@ namespace DisplayPluginLibrary
             this.Disposables.Add(this.SignalBus.Subscribe<SampleResultSignal>(this.HandleCursorDataRequests, s => s.SourceId == this.ScopeIdentity.Guid));
         }
 
+        /// <summary>
+        ///     Parameter view models.
+        /// </summary>
         [Browsable(false)]
         public ObservableCollection<TParameterViewModel> Parameters { get; } = new ObservableCollection<TParameterViewModel>();
 
+        /// <summary>
+        ///     Create a parameter view model.
+        /// </summary>
+        /// <returns>Parameter view model.</returns>
         protected TParameterViewModel CreateParameterViewModel()
         {
             var parameterViewModel = this.OnCreateParameterViewModel();
@@ -36,11 +48,23 @@ namespace DisplayPluginLibrary
             return parameterViewModel;
         }
 
+        /// <summary>
+        ///     Derived class supplied parameter view model Factory method.
+        /// </summary>
+        /// <returns>Parameter view model.</returns>
         protected abstract TParameterViewModel OnCreateParameterViewModel();
 
-        protected override Task OnMakeCursorDataRequestsAsync(ICompositeSession compositeSession)
+        /// <inheritdoc />
+        protected sealed override Task OnMakeCursorDataRequestsAsync(ICompositeSession compositeSession)
         {
-            return this.ExecuteOnUiAsync(() => this.SyncParameters(compositeSession.Key, compositeSession.CursorPoint));
+            return this.ExecuteOnUiAsync(() => this.UpdateParameters(compositeSession.Key, compositeSession.CursorPoint));
+        }
+
+        /// <summary>
+        ///     Notification method called once parameters have been updated.
+        /// </summary>
+        protected virtual void OnUpdateParameters()
+        {
         }
 
         private async void HandleCursorDataRequests(SampleResultSignal signal)
@@ -70,7 +94,7 @@ namespace DisplayPluginLibrary
             });
         }
 
-        private void SyncParameters(CompositeSessionKey compositeSessionKey, long cursorPoint)
+        private void UpdateParameters(CompositeSessionKey compositeSessionKey, long cursorPoint)
         {
             var existingParameters = this.Parameters.ToDictionary(p => p.DisplayParameter, p => p);
 
@@ -120,6 +144,8 @@ namespace DisplayPluginLibrary
 
                 parameter.OperationTracker.Add(signal);
             }
+
+            this.OnUpdateParameters();
         }
     }
 }
