@@ -47,8 +47,8 @@
     <Reference Include="MAT.Atlas.Client.Presentation, Version=10.4.4.220, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Atlas.DisplayAPI.10.4.4.220\lib\net48\MAT.Atlas.Client.Presentation.dll</HintPath>
     </Reference>
-    <Reference Include="MAT.OCS.Core, Version=2.1.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MAT.OCS.Core.2.1.11\lib\net45\MAT.OCS.Core.dll</HintPath>
+    <Reference Include="MAT.OCS.Core, Version=2.1.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MAT.OCS.Core.2.1.12\lib\net45\MAT.OCS.Core.dll</HintPath>
     </Reference>
     <Reference Include="MathNet.Numerics, Version=4.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MathNet.Numerics.4.15.0\lib\net461\MathNet.Numerics.dll</HintPath>
