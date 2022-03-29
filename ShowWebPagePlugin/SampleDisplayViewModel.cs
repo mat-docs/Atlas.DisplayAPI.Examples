@@ -50,6 +50,7 @@ namespace ShowWebPagePlugin
                 if (this.SetProperty(ref this.url, value))
                 {
                     this.SaveProperty(value);
+                    this.NavigateToUrl();
                 }
             }
         }
