@@ -34,14 +34,14 @@
     <Reference Include="Autofac, Version=4.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.5.0\lib\net45\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="MAT.Atlas.Api.Core, Version=11.1.1.206, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Atlas.DisplayAPI.11.1.1.206\lib\net48\MAT.Atlas.Api.Core.dll</HintPath>
+    <Reference Include="MAT.Atlas.Api.Core, Version=11.1.2.344, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Atlas.DisplayAPI.11.1.2.344\lib\net48\MAT.Atlas.Api.Core.dll</HintPath>
     </Reference>
-    <Reference Include="MAT.Atlas.Client.Platform, Version=11.1.1.206, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Atlas.DisplayAPI.11.1.1.206\lib\net48\MAT.Atlas.Client.Platform.dll</HintPath>
+    <Reference Include="MAT.Atlas.Client.Platform, Version=11.1.2.344, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Atlas.DisplayAPI.11.1.2.344\lib\net48\MAT.Atlas.Client.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="MAT.Atlas.Client.Presentation, Version=11.1.1.206, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Atlas.DisplayAPI.11.1.1.206\lib\net48\MAT.Atlas.Client.Presentation.dll</HintPath>
+    <Reference Include="MAT.Atlas.Client.Presentation, Version=11.1.2.344, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Atlas.DisplayAPI.11.1.2.344\lib\net48\MAT.Atlas.Client.Presentation.dll</HintPath>
     </Reference>
     <Reference Include="MAT.OCS.Core, Version=2.1.11.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MAT.OCS.Core.2.1.11\lib\net45\MAT.OCS.Core.dll</HintPath>
@@ -52,9 +52,20 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    <Reference Include="System.Reactive, Version=4.4.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.4.4.1\lib\net46\System.Reactive.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
