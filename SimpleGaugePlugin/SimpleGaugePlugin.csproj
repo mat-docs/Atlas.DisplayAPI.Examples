@@ -38,15 +38,6 @@
     <Reference Include="CircularGauge, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CircularGauge.1.0.0\lib\Net40-Client\CircularGauge.dll</HintPath>
     </Reference>
-    <Reference Include="MAT.Atlas.Api.Core, Version=11.2.2.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Atlas.DisplayAPI.11.2.2.2\lib\net48\MAT.Atlas.Api.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MAT.Atlas.Client.Platform, Version=11.2.2.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Atlas.DisplayAPI.11.2.2.2\lib\net48\MAT.Atlas.Client.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="MAT.Atlas.Client.Presentation, Version=11.2.2.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Atlas.DisplayAPI.11.2.2.2\lib\net48\MAT.Atlas.Client.Presentation.dll</HintPath>
-    </Reference>
     <Reference Include="MAT.OCS.Core, Version=2.1.15.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MAT.OCS.Core.2.1.15\lib\net45\MAT.OCS.Core.dll</HintPath>
     </Reference>
