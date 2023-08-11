@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAT.Atlas.Plugins.Samples.HelloWorld", "MAT.Atlas.Plugins.Samples.HelloWorld\MAT.Atlas.Plugins.Samples.HelloWorld.csproj", "{731083C3-DDEA-4F94-82BE-BE20E9CAA299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAT.Atlas.Plugins.Samples.HelloWorld", "MAT.Atlas.Plugins.Samples.HelloWorld\MAT.Atlas.Plugins.Samples.HelloWorld.csproj", "{731083C3-DDEA-4F94-82BE-BE20E9CAA299}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAT.Atlas.Plugins.Samples.HelloConsole", "MAT.Atlas.Plugins.Samples.HelloConsole\MAT.Atlas.Plugins.Samples.HelloConsole.csproj", "{D1B7382E-D7E3-43C1-A99A-C48407145FFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAT.Atlas.Plugins.Samples.HelloConsole", "MAT.Atlas.Plugins.Samples.HelloConsole\MAT.Atlas.Plugins.Samples.HelloConsole.csproj", "{D1B7382E-D7E3-43C1-A99A-C48407145FFC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Actions", "Actions", "{66E0E623-D52E-4C83-9A9D-019384DF94D9}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,17 +21,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{4E60
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tutorials", "Tutorials", "{7D1224A3-A217-4AB4-A0F7-FE45AA4386C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayPluginLibrary", "DisplayPluginLibrary\DisplayPluginLibrary.csproj", "{273CDD90-1FA3-4953-B4C6-2C2091D6BB50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisplayPluginLibrary", "DisplayPluginLibrary\DisplayPluginLibrary.csproj", "{273CDD90-1FA3-4953-B4C6-2C2091D6BB50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriverDisplayPlugin", "DriverDisplayPlugin\DriverDisplayPlugin.csproj", "{C2F063D2-7539-4C77-9DDD-E135F67049D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DriverDisplayPlugin", "DriverDisplayPlugin\DriverDisplayPlugin.csproj", "{C2F063D2-7539-4C77-9DDD-E135F67049D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedDisplayPlugin", "EnhancedDisplayPlugin\EnhancedDisplayPlugin.csproj", "{7F7D8F62-47B9-4A98-BA03-C479EDB70EDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnhancedDisplayPlugin", "EnhancedDisplayPlugin\EnhancedDisplayPlugin.csproj", "{7F7D8F62-47B9-4A98-BA03-C479EDB70EDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumericCompareDisplayPlugin", "NumericCompareDisplayPlugin\NumericCompareDisplayPlugin.csproj", "{AF5DEE0A-1307-4B0C-A641-9E617B14E14A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumericCompareDisplayPlugin", "NumericCompareDisplayPlugin\NumericCompareDisplayPlugin.csproj", "{AF5DEE0A-1307-4B0C-A641-9E617B14E14A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDisplayPlugin", "SampleDisplayPlugin\SampleDisplayPlugin.csproj", "{25EC5637-EA0E-438C-B0BD-6EC2F7B1CFB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDisplayPlugin", "SampleDisplayPlugin\SampleDisplayPlugin.csproj", "{25EC5637-EA0E-438C-B0BD-6EC2F7B1CFB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGaugePlugin", "SimpleGaugePlugin\SimpleGaugePlugin.csproj", "{899080EB-4531-438A-97C0-DDC890DFA5B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGaugePlugin", "SimpleGaugePlugin\SimpleGaugePlugin.csproj", "{899080EB-4531-438A-97C0-DDC890DFA5B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
