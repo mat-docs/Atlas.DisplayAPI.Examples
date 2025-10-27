@@ -1,0 +1,8 @@
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
+
+[assembly: AssemblyTitle("SimpleGaugePlugin")]
+[assembly: AssemblyDescription("Simple Gauge Plugin")]
+[assembly: Guid("8B8E85EB-B20A-4EB4-959E-D05A2CE0AD95")]
+
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]

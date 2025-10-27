@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
@@ -16,13 +16,13 @@
   <ItemGroup>
     <PackageReference Include="Atlas.DisplayAPI" Version="*" />
     <PackageReference Include="Autofac" Version="4.9.1" />
-    <PackageReference Include="MAT.OCS.Core" Version="2.1.15" />
+    <PackageReference Include="MAT.OCS.Core" Version="2.3.1" />
     <PackageReference Include="MathNet.Numerics" Version="4.15.0" />
     <PackageReference Include="System.ComponentModel.Composition" Version="7.0.0" />
     <PackageReference Include="System.Reactive" Version="4.4.1" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
   </ItemGroup>
-  <PropertyGroup>
-    <PostBuildEvent>call "$(SolutionDir)scripts\deploy.bat" "$(TargetDir)$(ProjectName).dll"</PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call &quot;$(SolutionDir)scripts\deploy.bat&quot; &quot;$(TargetDir)$(TargetFileName)&quot;" />
+  </Target>
 </Project>
