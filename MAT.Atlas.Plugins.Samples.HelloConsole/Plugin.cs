@@ -1,7 +1,4 @@
-﻿// <copyright file="Plugin.cs" company="McLaren Applied Technologies Ltd.">
-// Copyright (c) McLaren Applied Technologies Ltd.</copyright>
-
-using MAT.Atlas.Client.Presentation.Plugins;
+﻿using MAT.Atlas.Client.Presentation.Plugins;
 using MAT.Atlas.Plugins.Samples.HelloConsole.ViewModels;
 using MAT.Atlas.Plugins.Samples.HelloConsole.Views;
 

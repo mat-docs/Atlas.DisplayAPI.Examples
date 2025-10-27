@@ -1,7 +1,4 @@
-﻿// <copyright file="DelimiterFormat.cs" company="McLaren Applied Technologies Ltd.">
-// Copyright (c) McLaren Applied Technologies Ltd.</copyright>
-
-namespace MAT.Atlas.Plugins.Samples.HelloConsole.Helpers
+﻿namespace MAT.Atlas.Plugins.Samples.HelloConsole.Helpers
 {
     internal enum DelimiterFormat
     {

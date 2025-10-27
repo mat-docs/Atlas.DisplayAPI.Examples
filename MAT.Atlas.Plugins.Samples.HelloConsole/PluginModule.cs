@@ -1,7 +1,4 @@
-﻿// <copyright file="PluginModule.cs" company="McLaren Applied Technologies Ltd.">
-// Copyright (c) McLaren Applied Technologies Ltd.</copyright>
-
-using Autofac;
+﻿using Autofac;
 using Autofac.Core;
 using System.ComponentModel.Composition;
 using MAT.Atlas.Client.Presentation.Plugins;

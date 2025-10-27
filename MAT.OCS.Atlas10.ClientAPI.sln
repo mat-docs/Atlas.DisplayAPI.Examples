@@ -1,7 +1,6 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAT.Atlas.Plugins.Samples.HelloWorld", "MAT.Atlas.Plugins.Samples.HelloWorld\MAT.Atlas.Plugins.Samples.HelloWorld.csproj", "{731083C3-DDEA-4F94-82BE-BE20E9CAA299}"
 EndProject
@@ -32,6 +31,16 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDisplayPlugin", "SampleDisplayPlugin\SampleDisplayPlugin.csproj", "{25EC5637-EA0E-438C-B0BD-6EC2F7B1CFB6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGaugePlugin", "SimpleGaugePlugin\SimpleGaugePlugin.csproj", "{899080EB-4531-438A-97C0-DDC890DFA5B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		images\atlaslogo.png = images\atlaslogo.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +91,7 @@ Global
 		{AF5DEE0A-1307-4B0C-A641-9E617B14E14A} = {7D1224A3-A217-4AB4-A0F7-FE45AA4386C4}
 		{25EC5637-EA0E-438C-B0BD-6EC2F7B1CFB6} = {7D1224A3-A217-4AB4-A0F7-FE45AA4386C4}
 		{899080EB-4531-438A-97C0-DDC890DFA5B1} = {7D1224A3-A217-4AB4-A0F7-FE45AA4386C4}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5F01EE0C-3E60-4D5E-A2C8-7462210A0BBC}
