@@ -11,7 +11,7 @@
     <Resource Include="Resources\Images\console.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Atlas.DisplayAPI" Version="*" />
+    <PackageReference Include="Atlas.DisplayAPI" Version="11.4.4.349-W47" />
     <PackageReference Include="Autofac" Version="4.9.1" />
     <PackageReference Include="MAT.OCS.Core" Version="2.3.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
