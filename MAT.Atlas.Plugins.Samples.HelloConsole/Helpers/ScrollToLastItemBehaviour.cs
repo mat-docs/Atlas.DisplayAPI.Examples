@@ -1,4 +1,7 @@
-﻿using System.Collections.Specialized;
+﻿// <copyright file="ScrollToLastItemBehaviour.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 

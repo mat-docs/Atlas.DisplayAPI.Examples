@@ -1,4 +1,7 @@
-﻿using System;
+﻿// <copyright file="HelloConsoleDisplayViewModel.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;

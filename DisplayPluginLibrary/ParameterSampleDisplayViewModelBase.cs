@@ -1,4 +1,7 @@
-﻿using System;
+﻿// <copyright file="ParameterSampleDisplayViewModelBase.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;

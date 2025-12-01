@@ -1,4 +1,7 @@
-﻿using Autofac;
+﻿// <copyright file="PluginModule.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using Autofac;
 using Autofac.Core;
 using System.ComponentModel.Composition;
 using MAT.Atlas.Client.Presentation.Plugins;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// <copyright file="SampleDisplayViewModel.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
 using DisplayPluginLibrary;
 
 using MAT.Atlas.Api.Core.Diagnostics;

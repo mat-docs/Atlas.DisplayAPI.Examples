@@ -1,4 +1,7 @@
-﻿using System;
+﻿// <copyright file="ColorToSolidColorBrushValueConverter.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;

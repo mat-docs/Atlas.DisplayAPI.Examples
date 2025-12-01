@@ -4,8 +4,8 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("MAT.Atlas.Plugins.Samples.HelloConsole")]
-[assembly: AssemblyDescription("Samples Hello Console")]
-[assembly: Guid("ED41DC27-813D-46AC-B2FA-BE3308D0CB12")]
+[assembly: AssemblyTitle("NumericCompareDisplayPlugin")]
+[assembly: AssemblyDescription("Numeric Compare Display Plugin")]
+[assembly: Guid("8B8E85EB-B20A-4EB4-959E-D05A2CE0AD95")]
 
 [assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]
