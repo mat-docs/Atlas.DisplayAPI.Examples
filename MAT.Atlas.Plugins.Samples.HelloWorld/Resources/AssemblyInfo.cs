@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿// <copyright file="AssemblyInfo.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("MAT.Atlas.Plugins.Samples.HelloWorld")]

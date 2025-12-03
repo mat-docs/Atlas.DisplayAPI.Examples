@@ -1,4 +1,7 @@
-﻿using System;
+﻿// <copyright file="ParameterSampleViewModelBase.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using System;
 using System.Collections.Generic;
 
 using MAT.Atlas.Api.Core.Presentation;

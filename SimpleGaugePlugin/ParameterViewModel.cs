@@ -1,4 +1,7 @@
-﻿using DisplayPluginLibrary;
+﻿// <copyright file="ParameterViewModel.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using DisplayPluginLibrary;
 
 namespace SimpleGaugePlugin
 {

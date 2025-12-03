@@ -1,5 +1,5 @@
-﻿// <copyright file="HelloWorldViewModel.cs" company="McLaren Applied Technologies Ltd.">
-// Copyright (c) McLaren Applied Technologies Ltd.</copyright>
+﻿// <copyright file="HelloWorldViewModel.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
 
 using MAT.Atlas.Client.Presentation.Displays;
 using MAT.Atlas.Client.Presentation.Plugins;

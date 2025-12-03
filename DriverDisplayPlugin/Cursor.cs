@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿// <copyright file="Cursor.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using System.Windows;
 
 using MAT.Atlas.Api.Core.Data;
 

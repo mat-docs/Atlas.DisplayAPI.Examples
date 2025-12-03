@@ -1,4 +1,7 @@
-﻿using System;
+﻿// <copyright file="VisualLayer.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using System;
 using System.Windows;
 using System.Windows.Media;
 

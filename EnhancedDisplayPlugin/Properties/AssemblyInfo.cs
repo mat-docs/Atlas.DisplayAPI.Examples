@@ -4,8 +4,8 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("MAT.Atlas.Plugins.Samples.HelloConsole")]
-[assembly: AssemblyDescription("Samples Hello Console")]
-[assembly: Guid("ED41DC27-813D-46AC-B2FA-BE3308D0CB12")]
+[assembly: AssemblyTitle("EnhancedDisplayPlugin")]
+[assembly: AssemblyDescription("Enhanced Display Plugin")]
+[assembly: Guid("8B7D58A4-A244-49D7-B2FF-45D697AA3C26")]
 
 [assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]

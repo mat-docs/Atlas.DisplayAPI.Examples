@@ -1,5 +1,5 @@
-﻿// <copyright file="ScrollToLastItemBehaviour.cs" company="McLaren Applied Technologies Ltd.">
-// Copyright (c) McLaren Applied Technologies Ltd.</copyright>
+﻿// <copyright file="ScrollToLastItemBehaviour.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
 
 using System.Collections.Specialized;
 using System.Windows;

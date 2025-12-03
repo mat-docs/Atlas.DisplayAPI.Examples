@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿// <copyright file="ScrollToEnd.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using System.Windows.Controls;
 using Microsoft.Xaml.Behaviors;
 
 namespace EnhancedDisplayPlugin.Behaviours

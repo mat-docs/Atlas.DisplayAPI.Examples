@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// <copyright file="LedViewModel.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
+
+using System.Collections;
 using System.Windows.Media;
 
 using MAT.Atlas.Api.Core.Presentation;

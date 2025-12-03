@@ -1,6 +1,5 @@
-﻿// <copyright file="HelloWorldDisplayView.xaml.cs" company="McLaren Applied Technologies Ltd.">
-// Copyright (c) McLaren Applied Technologies Ltd.</copyright>
-
+﻿// <copyright file="HelloConsoleDisplayView.cs" company="Motion Applied Ltd.">
+// Copyright (c) Motion Applied Ltd.</copyright>
 
 namespace MAT.Atlas.Plugins.Samples.HelloConsole.Views
 {
