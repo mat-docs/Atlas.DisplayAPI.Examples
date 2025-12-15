@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\DisplayPluginLibrary\DisplayPluginLibrary.csproj" />
@@ -14,16 +15,15 @@
     <Resource Include="Resources\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Atlas.DisplayAPI" Version="*" />
+    <PackageReference Include="Atlas.DisplayAPI" Version="11.4.4.371-W48" />
     <PackageReference Include="Autofac" Version="4.9.1" />
     <PackageReference Include="CircularGauge" Version="1.0.0" />
-    <PackageReference Include="MAT.OCS.Core" Version="2.1.15" />
+    <PackageReference Include="MAT.OCS.Core" Version="*" />
     <PackageReference Include="System.ComponentModel.Composition" Version="7.0.0" />
     <PackageReference Include="System.Reactive" Version="4.4.1" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
   </ItemGroup>
-  <PropertyGroup>
-    <PostBuildEvent>call "$(SolutionDir)scripts\deploy.bat" "$(TargetDir)$(ProjectName).dll"
-call "$(SolutionDir)scripts\deploy.bat" "$(TargetDir)CircularGauge.dll"</PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call &quot;$(SolutionDir)scripts\deploy.bat&quot; &quot;$(TargetDir)$(TargetFileName)&quot;&#xD;&#xA;call &quot;$(SolutionDir)scripts\deploy.bat&quot; &quot;$(TargetDir)CircularGauge.dll&quot;" />
+  </Target>
 </Project>

@@ -52,4 +52,4 @@ jobs:
 
       - name: Build solution
         shell: pwsh    
-        run: msbuild $env:Solution_Name -p:Configuration=${{ matrix.configuration }} -p:Platform="Any CPU"
+        run: msbuild $env:Solution_Name -p:Configuration=${{ matrix.configuration }} -p:Platform="x64"
